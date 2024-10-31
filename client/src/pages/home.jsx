@@ -1,17 +1,38 @@
-import { useEffect } from "react";
+import { useCallback, useEffect} from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../config/firebase";
 
-export default function Home(user) {
-
-  useEffect(()=>{
-    // try to fetch user, or else redirect to server error and log out current user
-    if (user) {
-      // todo: do something
+function SignOut() {
+  const navigate = useNavigate();
+  
+  const handleClick = useCallback(async () => {
+    try {
+      await signOut(auth);
+    } catch {
+      // 
     }
-  }, [user]);
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user === null) {
+        navigate('/');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
 
   return (
+    <button onClick={handleClick}>Sign Out</button>
+  );
+}
+
+export default function Home() {
+  return (
     <div>
-      Home
+      <SignOut />
     </div>
   );
 }
