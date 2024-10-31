@@ -19,14 +19,12 @@ export default function App () {
 
   return (
     <BrowserRouter basename="/" >
-      <main className="min-h-screen font-mono dark:bg-black dark:text-white ">
-        <Routes>
-          {
-            routes.map((route, index)=><Route key={index} path={route.path} element={route.element} />)
-          }
-          <Route path="*" element={<Error404/>} />
-        </Routes>
-      </main>
+      <Routes>
+        {
+          routes.map((route, index)=><Route key={index} path={route.path} element={route.element} />)
+        }
+        <Route path="*" element={<Error404/>} />
+      </Routes>
     </BrowserRouter>
   )
 }
