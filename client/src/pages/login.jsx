@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../config/firebase"
-import { redirect, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -33,7 +33,7 @@ function Form () {
   const handleSubmit = useCallback( async (e)=>{
     e.preventDefault();
     console.log("submit clicked");
-    await createUserWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
   }, [email, password]);
 
   return (
