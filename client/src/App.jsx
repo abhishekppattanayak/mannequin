@@ -1,7 +1,7 @@
 import {Routes, Route, BrowserRouter} from "react-router-dom";
 import { useCallback, useMemo } from "react";
 import Index from "./pages/index.jsx";
-import Login from "./pages/login.jsx";
+import LoginPage from "./pages/login.jsx";
 import Home from "./pages/home.jsx";
 import Room from "./pages/room.jsx";
 import Error404 from "./pages/404.jsx";
@@ -14,7 +14,7 @@ export default function App () {
     _route('/', <Index/>),
     _route('/room', <Room/>),
     _route('/home', <Home/>),
-    _route('/login', <Login/>),
+    _route('/login', <LoginPage/>),
   ], [_route])
 
   return (
