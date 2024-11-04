@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../config/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { Link, useNavigate } from "npm:react-router-dom";
+import { auth } from "../config/firebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { useEffect } from "react";
 
 /**
@@ -27,7 +27,7 @@ export default function Index () {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         navigate('/home');
       }

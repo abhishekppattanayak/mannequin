@@ -1,4 +1,6 @@
-import {Routes, Route, BrowserRouter} from "react-router-dom";
+
+// @deno-types="@types/react"
+import {Routes, Route, BrowserRouter} from "npm:react-router-dom";
 import { useCallback, useMemo } from "react";
 import Index from "./pages/index.jsx";
 import LoginPage from "./pages/login.jsx";

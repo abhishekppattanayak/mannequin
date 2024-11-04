@@ -1,9 +1,9 @@
-import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
-import { auth, GoogleProvider } from "../config/firebase"
-import { Link, useNavigate } from "react-router-dom"
+import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { auth, GoogleProvider } from "../config/firebase.js"
+import { Link, useNavigate } from "npm:react-router-dom"
 import { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
-import googleSVG from "/google.svg";
+import googleSVG from "../assets/google.svg";
 
 export function Input ({htmlFor, type, text, setChange}) {
   const handleChange = useCallback((e) => setChange(e.target.value), [setChange]);

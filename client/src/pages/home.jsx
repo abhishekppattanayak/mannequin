@@ -1,7 +1,7 @@
 import { useCallback, useEffect} from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../config/firebase";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { useNavigate } from "npm:react-router-dom";
+import { auth } from "../config/firebase.js";
 
 function SignOut() {
   const navigate = useNavigate();

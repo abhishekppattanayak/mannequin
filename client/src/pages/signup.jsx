@@ -1,9 +1,9 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
-import { auth, GoogleProvider } from "../config/firebase"
-import { Link, useNavigate } from "react-router-dom"
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { auth, GoogleProvider } from "../config/firebase.js"
+import { Link, useNavigate } from "npm:react-router-dom"
 import { useState, useCallback, useEffect } from "react";
-import googleSVG from "/google.svg";
-import { ErrorMessage, Input, OR, SignInWithProvider } from "./login";
+import googleSVG from "../assets/google.svg";
+import { ErrorMessage, Input, OR, SignInWithProvider } from "./login.jsx";
 
 function Form () {
 
