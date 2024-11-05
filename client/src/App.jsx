@@ -1,7 +1,7 @@
 
 // @deno-types="@types/react"
 import {Routes, Route, BrowserRouter} from "npm:react-router-dom";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import Index from "./pages/index.jsx";
 import LoginPage from "./pages/login.jsx";
 import Home from "./pages/home.jsx";
