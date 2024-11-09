@@ -37,7 +37,7 @@ function Form () {
           <Input htmlFor="password" type="password" text="Password*" setChange={setPassword} />
         </div>
 
-        <button type="submit" className="lg:px-4 py-1 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-300 rounded-md font-bold">{logging ? "Signing in..." : "Sign up" }</button>
+        <button type="submit" className="lg:px-4 py-1 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-300 rounded-md font-bold disabled:bg-neutral-500 disabled:hover:bg-neutral-500 disabled:cursor-not-allowed" disabled={logging} >{logging ? "Signing in..." : "Sign up" }</button>
         <span className="block text-center" >Already an existing user? <Link to={'/login'} className="dark:text-indigo-400 underline" >Log in</Link></span>
       </fieldset>
     </form>

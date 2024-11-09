@@ -11,7 +11,7 @@ function createChatObject (userId:string, chatId:string, title:string, chat:JSON
   return {userId, chatId, title, chat};
 }
 
-export async function getChats (userId: string) : Promise<any> {
+export async function getChats (userId: string | undefined) : Promise<any> {
   try {
     const data = await db.collection("users").findOne({userId});
     if (!data)

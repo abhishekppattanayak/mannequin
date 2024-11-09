@@ -7,3 +7,4 @@ const FIREBASE_CONFIG = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG);
 export const app = initializeApp(FIREBASE_CONFIG);
 export const auth = getAuth(app);
 export const GoogleProvider = new GoogleAuthProvider();
+
