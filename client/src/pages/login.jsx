@@ -5,13 +5,13 @@ import { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import googleSVG from "../assets/google.svg";
 
-export function Input ({htmlFor, type, text, setChange}) {
+export function Input ({htmlFor, type, text, value, setChange, disabled}) {
   const handleChange = useCallback((e) => setChange(e.target.value), [setChange]);
 
   return (
     <div className="*:block" >
       <label htmlFor={htmlFor}>{text}</label>
-      <input type={type} id={htmlFor} minLength={"6"} className="w-full rounded-sm text-black px-2 py-1 bg-neutral-200" required={true} onChange={handleChange}  />
+      <input type={type} id={htmlFor} minLength={"6"} className="w-full rounded-sm text-black px-2 py-1 bg-neutral-200 disabled:bg-neutral-500 disabled:cursor-not-allowed " required={true} value={value} onChange={handleChange} disabled={disabled || false}  />
     </div>
   )
 }
@@ -61,8 +61,8 @@ function Form () {
     <form onSubmit={handleSubmit} className="w-80 sm:w-96"  >
       <fieldset className="flex flex-col gap-10 border px-6 sm:px-8 py-8 sm:py-10 rounded-md bg-neutral-50/5  dark:bg-neutral-900/5 dark:border-white">
         <div>
-          <Input htmlFor="email" type="email" text="Email*" setChange={setEmail} />
-          <Input htmlFor="password" type="password" text="Password*" setChange={setPassword} />
+          <Input htmlFor="email" type="email" text="Email*" value={email} setChange={setEmail} />
+          <Input htmlFor="password" type="password" text="Password*" value={password} setChange={setPassword} />
         </div>
 
         <button type="submit" className="lg:px-4 py-1 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-300 rounded-md font-bold">{logging ? "Logging in..." : "Log in" }</button>

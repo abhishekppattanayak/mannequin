@@ -52,7 +52,7 @@ export default function SignUpPage () {
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth, (user) =>{
       if (user)
-          navigate('/home');
+        navigate('/register');
       return () => unsubscribe();
     })
   }, [navigate]);

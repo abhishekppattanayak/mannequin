@@ -3,7 +3,7 @@ import { Router } from "jsr:@oak/oak/router";
 import { MongoClient } from "npm:mongodb";
 import { getChats } from "./controllers/chats.ts";
 import InterfaceUser from "./interfaces/user.ts";
-import { verify } from "https://deno.land/x/djwt@v3.0.2/mod.ts";
+import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
 const PORT = 8000;
 const DATABASE_URL = Deno.env.get("DATABASE_URL") || "";
@@ -134,6 +134,7 @@ async function start() {
     users = db.collection("users");
     chats = db.collection("chats");
 
+    app.use(oakCors());
     app.use(router.routes());
     app.use(router.allowedMethods());
 
