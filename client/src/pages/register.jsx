@@ -6,6 +6,7 @@ import { VITE_SERVER_URL } from "../config/secrets.js";
 import { useNavigate } from "npm:react-router-dom";
 
 export const createFormData = (data) => {
+  console.log(data);
   const formData = new FormData();
   Object.entries(data).forEach(([key, value]) => formData.append(key, value));
   return formData;

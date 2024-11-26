@@ -8,7 +8,7 @@ import Home from "./pages/home.jsx";
 import Room from "./pages/room.jsx";
 import Error404 from "./pages/404.jsx";
 import SignUpPage from "./pages/signup.jsx";
-import Register from "./pages/new.jsx";
+import Register from "./pages/register.jsx";
 
 export default function App () {
   

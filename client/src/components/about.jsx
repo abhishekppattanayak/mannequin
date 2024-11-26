@@ -1,6 +1,6 @@
 export default function About () {
   return (
-    <section className="lg:px-80 lg:py-36 text-justify" >
+    <section className="lg:px-80 lg:py-36 text-justify h-screen flex flex-col justify-center" >
       <h1 className="text-xl font-bold">About the project</h1>
       <p className="text-lg">
         I started on working on Mannequin in my final year of engineering to prepare for placements. I mostly used to practice interviews infront of the mirror, or in my head. But, I'd knew it will be difficult to critique in realtime. So, I started recording myself giving the interview. But, I will be still limited by my knowledge of the subject. And soon I started generating tougher questions from ChatGPT and Gemini. Then, I asked myself, "What if ChatGPT or Gemini can also <i>take</i> my interview?".

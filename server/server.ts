@@ -72,6 +72,8 @@ router.post("/user/new", async (ctx) => {
   const data = await ctx.request.body.formData()
   console.log(data)
   const userId = data.get("userId") || undefined;
+  const name = data.get("name") || undefined;
+  const pronouns = data.get("pronouns") || undefined;
 
   if (!userId) {
     ctx.response.status = 400 ;
@@ -85,6 +87,8 @@ router.post("/user/new", async (ctx) => {
 
     await users.insertOne({
       userId: userId,
+      name: name,
+      pronouns: pronouns,
     })
 
     ctx.response.status = 200
