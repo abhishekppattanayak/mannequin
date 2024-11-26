@@ -3,7 +3,7 @@ import { Router } from "jsr:@oak/oak/router";
 import { MongoClient } from "npm:mongodb";
 import { getChats } from "./controllers/chats.ts";
 import InterfaceUser from "./interfaces/user.ts";
-import { oakCors } from "https://deno.land/x/cors/mod.ts";
+import { oakCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
 
 const PORT = 8000;
 const DATABASE_URL = Deno.env.get("DATABASE_URL") || "";
@@ -70,7 +70,6 @@ router.get("/chats/", async (ctx) => {
 
 router.post("/user/new", async (ctx) => {
   const data = await ctx.request.body.formData()
-  console.log(data)
   const userId = data.get("userId") || undefined;
   const name = data.get("name") || undefined;
   const pronouns = data.get("pronouns") || undefined;
@@ -104,6 +103,28 @@ router.post("/user/new", async (ctx) => {
     }
   }
 });
+
+router.get('/user/:userId', async (ctx)=>{
+  const userId = ctx.params.userId;
+
+  try {
+    const user = await users.findOne({userId: userId})
+    
+    ctx.response.status = 200;
+    ctx.response.body = {
+      messsage: "200 OK.",
+      user: user,
+    }
+  }
+  catch (error: any) {
+    ctx.response.status = 501;
+    ctx.response.body = {
+      message: "501 Internal Server Error.",
+      description: error.message
+    }
+  }
+  
+})
 
 router.use((ctx) => {
   ctx.response.status = 404;

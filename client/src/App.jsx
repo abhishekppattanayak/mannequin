@@ -11,6 +11,8 @@ import SignUpPage from "./pages/signup.jsx";
 import Register from "./pages/register.jsx";
 import { createContext } from "react";
 
+export const UserContext = createContext(null);
+
 export default function App () {
   
   const _route = useCallback((path, element)=>({path, element}), []);
@@ -21,21 +23,19 @@ export default function App () {
     _route('/home', <Home/>),
     _route('/login', <LoginPage/>),
     _route('/signup', <SignUpPage /> ),
-    _route('/register', <Register /> )
+    _route('/register', <Register /> ),
+    _route('*', <Error404 /> )
   ], [_route])
 
   const [userState, setUserState] = useState(null)
 
-  const UserContext = createContext(null);
-
   return (
     <BrowserRouter basename="/" >
-      <UserContext.Provider value={{userState, setUserState}} >
+      <UserContext.Provider value={{userState, setUserState}} > 
         <Routes>
           {
             routes.map((route, index)=><Route key={index} path={route.path} element={route.element} />)
           }
-          <Route path="*" element={<Error404/>} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

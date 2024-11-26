@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { auth } from "../config/firebase.js";
 import { Input } from "./login.jsx";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useContext } from "react";
 import { VITE_SERVER_URL } from "../config/secrets.js";
 import { useNavigate } from "npm:react-router-dom";
 
@@ -30,10 +30,16 @@ export default function Register () {
   const [name, setName] = useState("")
   const [pronouns, setPronouns] = useState("He/Him")
 
+  const {userState, setUserState} = useContext(UserContext);
+
   useEffect( () => {
     const unsubscribe = onAuthStateChanged(auth, user => setUID(user.uid))
     return () => unsubscribe()
   }, [])
+
+  useEffect( () => {
+    setUserState(prev => {name, pronouns})
+  }, [name, pronouns])
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault()
