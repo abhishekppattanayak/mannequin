@@ -1,12 +1,11 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { auth } from "../config/firebase.js";
 import { Input } from "./login.jsx";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { VITE_SERVER_URL } from "../config/secrets.js";
 import { useNavigate } from "npm:react-router-dom";
 
 export const createFormData = (data) => {
-  console.log(data);
   const formData = new FormData();
   Object.entries(data).forEach(([key, value]) => formData.append(key, value));
   return formData;
@@ -62,6 +61,8 @@ export default function Register () {
     }
   }, [UID, name, pronouns])
 
+  const pronounOptions = useMemo(() => ["He/Him", "She/Her", "They/Them", "Prefer not to say"], []);
+
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-4">
       <b className="text-xl text-center " >Mannequin</b>
@@ -71,7 +72,7 @@ export default function Register () {
           <div className="*:my-2" >
             <Input text="Your given UID" value={UID} type="text" setChange={()=>()=>{}} htmlFor="UID" disabled={true} />
             <Input text="Name*" type="text" value={name} setChange={setName} htmlFor="name"  />
-            <Select id="pronouns" name="Pronouns*" options={["He/Him", "She/Her", "They/Them", "Prefer not to say"]} setChange={setPronouns} />
+            <Select id="pronouns" name="Pronouns*" options={pronounOptions} setChange={setPronouns} />
           </div>
 
           <button type="submit" onClick={handleSubmit} className="lg:px-4 py-1 bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-300 rounded-md font-bold" >Save</button>

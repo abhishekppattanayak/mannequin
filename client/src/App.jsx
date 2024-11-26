@@ -1,7 +1,7 @@
 
 // @deno-types="@types/react"
 import {Routes, Route, BrowserRouter} from "npm:react-router-dom";
-import { useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 import Index from "./pages/index.jsx";
 import LoginPage from "./pages/login.jsx";
 import Home from "./pages/home.jsx";
@@ -9,6 +9,7 @@ import Room from "./pages/room.jsx";
 import Error404 from "./pages/404.jsx";
 import SignUpPage from "./pages/signup.jsx";
 import Register from "./pages/register.jsx";
+import { createContext } from "react";
 
 export default function App () {
   
@@ -23,14 +24,20 @@ export default function App () {
     _route('/register', <Register /> )
   ], [_route])
 
+  const [userState, setUserState] = useState(null)
+
+  const UserContext = createContext(null);
+
   return (
     <BrowserRouter basename="/" >
-      <Routes>
-        {
-          routes.map((route, index)=><Route key={index} path={route.path} element={route.element} />)
-        }
-        <Route path="*" element={<Error404/>} />
-      </Routes>
+      <UserContext.Provider value={{userState, setUserState}} >
+        <Routes>
+          {
+            routes.map((route, index)=><Route key={index} path={route.path} element={route.element} />)
+          }
+          <Route path="*" element={<Error404/>} />
+        </Routes>
+      </UserContext.Provider>
     </BrowserRouter>
   )
 }
