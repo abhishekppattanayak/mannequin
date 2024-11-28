@@ -10,6 +10,8 @@ import Error404 from "./pages/404.jsx";
 import SignUpPage from "./pages/signup.jsx";
 import Register from "./pages/register.jsx";
 import { createContext } from "react";
+import Settings from "./pages/settings.jsx";
+
 
 export const UserContext = createContext(null);
 
@@ -24,6 +26,7 @@ export default function App () {
     _route('/login', <LoginPage/>),
     _route('/signup', <SignUpPage /> ),
     _route('/register', <Register /> ),
+    _route('/settings', <Settings /> ),
     _route('*', <Error404 /> )
   ], [_route])
 
