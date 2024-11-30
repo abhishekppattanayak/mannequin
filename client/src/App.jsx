@@ -11,7 +11,7 @@ import SignUpPage from "./pages/signup.jsx";
 import Register from "./pages/register.jsx";
 import { createContext } from "react";
 import Settings from "./pages/settings.jsx";
-
+import Notification from "./components/notification.jsx";
 
 export const UserContext = createContext(null);
 export const NotificationContext = createContext(null);
@@ -43,6 +43,7 @@ export default function App () {
               routes.map((route, index)=><Route key={index} path={route.path} element={route.element} />)
             }
           </Routes>
+          <Notification />
         </NotificationContext.Provider>
       </UserContext.Provider>
     </BrowserRouter>
