@@ -14,6 +14,7 @@ import Settings from "./pages/settings.jsx";
 
 
 export const UserContext = createContext(null);
+export const NotificationContext = createContext(null);
 
 export default function App () {
   
@@ -30,16 +31,19 @@ export default function App () {
     _route('*', <Error404 /> )
   ], [_route])
 
-  const [userState, setUserState] = useState(null)
+  const [userState, setUserState] = useState(null);
+  const [notifState, setNotifState] = useState(false);
 
   return (
     <BrowserRouter basename="/" >
       <UserContext.Provider value={{userState, setUserState}} > 
-        <Routes>
-          {
-            routes.map((route, index)=><Route key={index} path={route.path} element={route.element} />)
-          }
-        </Routes>
+        <NotificationContext.Provider value={{notifState, setNotifState}} >
+          <Routes>
+            {
+              routes.map((route, index)=><Route key={index} path={route.path} element={route.element} />)
+            }
+          </Routes>
+        </NotificationContext.Provider>
       </UserContext.Provider>
     </BrowserRouter>
   )

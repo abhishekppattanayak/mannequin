@@ -8,6 +8,7 @@ import { UserContext } from "../App.jsx";
 import Sidebar from "../components/sidebar.jsx";
 import Main from "../components/main.jsx";
 import Chats from "../components/chats.jsx";
+import Notification from "../components/notification.jsx";
 
 function SignOut() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function SignOut() {
     }
   }, []);
 
-  const {userState, setUserState} = useContext(UserContext);
+  const {setUserState} = useContext(UserContext);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -30,7 +31,7 @@ function SignOut() {
       else {
         let userDetails = await fetch(`${VITE_SERVER_URL}/user/${user.uid}`);
         userDetails = await userDetails.json();        
-        setUserState(prev => userDetails.user)
+        setUserState(userDetails.user)
       }
     });
 
@@ -44,18 +45,19 @@ function SignOut() {
 
 export default function Home() {
   
-  const {userState, setUserState} = useContext(UserContext);
+  const {userState} = useContext(UserContext);
 
   return (
     <div className="h-screen grid grid-cols-6 *:m-2 *:py-2 *:px-4 *:rounded-md " >
-      <Sidebar className="bg-neutral-100 dark:bg-neutral-900 col-span-1 flex flex-col gap-2" >
+      <Sidebar className="bg-neutral-100 dark:bg-neutral-900 col-span-1 hidden xl:flex flex-col gap-2" >
         <Chats userDetails={userState} />
         <Link to={'/settings'} className="py-2 px-3 text-center hover:underline" >Settings</Link>
         <SignOut />
       </Sidebar>
-      <Main className="bg-neutral-50 dark:bg-neutral-950 col-span-5  " >
+      <Main className="bg-neutral-50 dark:bg-neutral-950 col-span-full xl:col-span-5 " >
 
       </Main>
+      <Notification />
     </div>
   );
 }
