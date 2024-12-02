@@ -22,16 +22,16 @@ export default function AddSvg({ className }) {
               strokeWidth="3"
               x1="16"
               x2="16"
-              y1="5"
-              y2="27"
+              y1="8"
+              y2="24"
             />
             <line
               className="stroke-black dark:stroke-white"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="3"
-              x1="5"
-              x2="27"
+              x1="8"
+              x2="24"
               y1="16"
               y2="16"
             />

@@ -22,6 +22,7 @@
     "prop-types": "npm:prop-types@^15.8.1",
     "react": "npm:react@^18.3.1",
     "react-dom": "npm:react-dom@^18.3.1",
+    "react-router-dom": "npm:react-router-dom@^7.0.1",
     "tailwindcss": "npm:tailwindcss@^3.4.14",
     "vite": "npm:vite@^5.4.9"
   },

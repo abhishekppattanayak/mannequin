@@ -1,7 +1,7 @@
 
 // @deno-types="@types/react"
 import {Routes, Route, BrowserRouter} from "npm:react-router-dom";
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import Index from "./pages/index.jsx";
 import LoginPage from "./pages/login.jsx";
 import Home from "./pages/home.jsx";
@@ -15,6 +15,7 @@ import Notification from "./components/notification.jsx";
 
 export const UserContext = createContext(null);
 export const NotificationContext = createContext(null);
+export const LoggedInContext = createContext(null);
 
 export default function App () {
   

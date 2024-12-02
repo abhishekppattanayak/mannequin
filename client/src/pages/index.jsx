@@ -1,15 +1,9 @@
-import { Link, useNavigate } from "npm:react-router-dom";
-import { auth } from "../config/firebase.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { useEffect } from "react";
+import { Link } from "npm:react-router-dom";
 import Hero from "../components/hero.jsx";
 import About from "../components/about.jsx";
-
-/**
- * The `/index` redirects to `/home` if the user is logged in,
- * or else gives a quick go-through of the service.
- * 
-*/
+import Navbar from "../components/navbar.jsx";
+import { useRef } from "react";
+import { useInView } from "npm:framer-motion";
 
 function Auth () {
   return (
@@ -22,24 +16,16 @@ function Auth () {
 
 
 export default function Index () {
-
-  const navigate = useNavigate();
-
-  useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate('/home');
-      }
-    })
-    
-    return () => unsubscribe();
-  }, [navigate]);
+  
+  const about = useRef(null);
+  const isInView = useInView(about)
 
   return (
     <>
-    <Hero />
-    <div className="h-fit">
-      <About />
+    <Navbar isInView={isInView} />
+    <Hero/>
+    <div ref={about} className="h-fit" >
+      <About/>
       <Auth />
     </div>
     </>
