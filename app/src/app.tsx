@@ -7,8 +7,8 @@ export default function App() {
 	return (
 		<Router
 			root={(props) => (
-				<Suspense>
-					<div>Loading...</div>
+				<Suspense fallback={<div>Loading...</div>}>
+					{props.children}
 				</Suspense>
 			)}
 		>
